@@ -6,6 +6,7 @@
         <sourceOutputDir name="target/generated-sources/annotations" />
         <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
         <outputRelativeToContentRoot value="true" />
+        <module name="Bitirme-Projesi-LCW-25.06" />
         <module name="Selenium1" />
       </profile>
     </annotationProcessing>
