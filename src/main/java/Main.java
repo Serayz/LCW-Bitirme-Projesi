@@ -12,7 +12,7 @@ import java.util.concurrent.TimeUnit;
 public class Main {
     public static void main(String[] args) {
         ChromeOptions options = new ChromeOptions();
-        options.addArguments("--disable-notifications","--disable-blink-features=AutomationControlled");
+        options.addArguments("--disable-notifications", "--disable-blink-features=AutomationControlled");
 
         WebDriverManager.chromedriver().setup();
         WebDriver driver = new ChromeDriver(
@@ -21,7 +21,9 @@ public class Main {
 
         driver.get("https://www.lcwaikiki.com/");
         driver.manage().timeouts().pageLoadTimeout(100, TimeUnit.SECONDS);
-
+        //loginTest(driver);
+    }
+    private static void loginTest(WebDriver driver) {
         WebElement girisYap = driver.findElement(By.xpath("//*[@id=\"header__container\"]/header/div[2]/div[3]/div/span/div/a"));
         girisYap.click();
 
@@ -58,7 +60,7 @@ public class Main {
 
 
     }
-    }
+}
 
 
 
