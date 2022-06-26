@@ -1,6 +1,5 @@
 import io.github.bonigarcia.wdm.WebDriverManager;
 import org.apache.commons.lang3.StringUtils;
-import org.apache.commons.lang3.builder.ToStringExclude;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
@@ -10,8 +9,6 @@ import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
-import java.io.Console;
-import java.util.Arrays;
 import java.util.concurrent.TimeUnit;
 
 public class Main {
@@ -20,7 +17,6 @@ public class Main {
         options.addArguments("--disable-notifications", "--disable-blink-features=AutomationControlled"); //Removes the detection
         options.setExperimentalOption("useAutomationExtension", false);
         options.setExperimentalOption("excludeSwitches", new String[]{"enable-automation",}); //Removes the banner
-        WebDriverManager.chromedriver().setup();
 
         WebDriverManager.chromedriver().setup();
         WebDriver driver = new ChromeDriver(options);
@@ -28,6 +24,11 @@ public class Main {
 
         driver.get("https://www.lcwaikiki.com/");
         driver.manage().timeouts().pageLoadTimeout(100, TimeUnit.SECONDS);
+
+        WebElement cookiePopUp = driver.findElement(By.xpath("//*[@id=\"cookieseal-banner\"]/div/button[2]"));
+        if (cookiePopUp.isDisplayed()) {
+                 new WebDriverWait(driver, 5).until(ExpectedConditions.elementToBeClickable(cookiePopUp)).click();
+        }
 
         WebElement girisYap = driver.findElement(By.xpath("//*[@id=\"header__container\"]/header/div[2]/div[3]/div/span/div/a"));
         girisYap.click();
@@ -160,10 +161,10 @@ public class Main {
     private static void uyeGirisi(WebDriver driver) {
         WebElement elementEposta = driver.findElement(By.name("email"));
         elementEposta.click();
-        elementEposta.sendKeys("burkuay@gmail.com");
+        elementEposta.sendKeys("testautomationesb@gmail.com");
         WebElement elementSifre = driver.findElement(By.name("password"));
         elementSifre.click();
-        elementSifre.sendKeys("Bwha9jv7M.K3xzf");
+        elementSifre.sendKeys("Test112.");
 
         try {
             Thread.sleep(3000);
@@ -182,8 +183,4 @@ public class Main {
 
     }
 }
-
-
-
-
 
